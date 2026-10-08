@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>RISC · Amigo Secreto 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --verde:#0e3b2c; --verde2:#14513c; --creme:#fbf6ea; --ouro:#d9b25f;
+    --vermelho:#c2412d; --texto:#1d2a24; --suave:#6b7a72;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    color:var(--creme);
+    background:
+      radial-gradient(1200px 600px at 50% -10%, #1d6b4f 0%, transparent 60%),
+      radial-gradient(800px 500px at 100% 110%, #3a1a14 0%, transparent 55%),
+      var(--verde);
+    min-height:100%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:32px 20px;overflow-x:hidden;
+  }
+  .neve{position:fixed;inset:0;pointer-events:none;z-index:0}
+  .neve i{position:absolute;top:-10px;width:6px;height:6px;border-radius:50%;
+    background:rgba(255,255,255,.55);animation:cai linear infinite}
+  @keyframes cai{to{transform:translateY(110vh) translateX(30px)}}
+
+  header{position:relative;z-index:1;text-align:center;margin-bottom:28px}
+  .marca{letter-spacing:.32em;font-weight:700;font-size:clamp(26px,6vw,34px);color:var(--ouro);padding-left:.32em}
+  h1{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:clamp(38px,9vw,64px);
+    line-height:1;margin:10px 0 6px}
+  .ano{font-family:Fraunces,Georgia,serif;font-size:20px;color:rgba(251,246,234,.7)}
+
+  .cartao{position:relative;z-index:1;width:100%;max-width:420px;background:var(--creme);
+    color:var(--texto);border-radius:20px;padding:30px 26px 26px;
+    box-shadow:0 30px 60px rgba(0,0,0,.35);text-align:center}
+  .cartao::before{content:"";position:absolute;left:50%;top:-14px;transform:translateX(-50%);
+    width:56px;height:28px;border-radius:14px 14px 4px 4px;background:var(--vermelho)}
+  .cartao p{margin:0 0 18px;color:var(--suave);line-height:1.5}
+  label{display:block;font-size:13px;font-weight:600;text-align:left;margin-bottom:6px;color:var(--texto)}
+  input{width:100%;font:600 22px/1 Inter,monospace;letter-spacing:.18em;text-align:center;
+    text-transform:uppercase;padding:14px 12px;border:2px solid #e3dccb;border-radius:12px;
+    background:#fff;color:var(--texto);outline:none}
+  input:focus{border-color:var(--verde2)}
+  button{margin-top:14px;width:100%;font:600 16px Inter,sans-serif;padding:14px;border:0;
+    border-radius:12px;background:var(--verde2);color:var(--creme);cursor:pointer}
+  button:hover{background:var(--verde)}
+  button:disabled{opacity:.6;cursor:wait}
+  .erro{min-height:20px;margin-top:12px;font-size:14px;color:var(--vermelho)}
+
+  .ola{font-family:Fraunces,Georgia,serif;font-size:30px;color:var(--texto);margin:0 0 6px}
+  .presente{font-size:58px;line-height:1;margin:8px 0 14px;cursor:pointer;user-select:none;
+    display:inline-block;animation:balanca 1.8s ease-in-out infinite}
+  @keyframes balanca{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+  .rotulo{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--suave);margin-top:6px}
+  .nome{font-family:Fraunces,Georgia,serif;font-weight:700;color:var(--vermelho);
+    font-size:clamp(40px,12vw,56px);margin:6px 0 8px;opacity:0;transform:scale(.7);
+    transition:all .5s cubic-bezier(.2,1.4,.4,1)}
+  .nome.ver{opacity:1;transform:scale(1)}
+  .dica{font-size:13px;color:var(--suave);margin-top:14px}
+  .oculto{display:none}
+  .link{background:none;color:var(--suave);font-weight:500;font-size:14px;margin-top:10px;padding:6px}
+  .link:hover{background:none;color:var(--texto)}
+  footer{position:relative;z-index:1;margin-top:26px;font-size:12px;color:rgba(251,246,234,.5)}
+</style>
+</head>
+<body>
+<div class="neve" id="neve"></div>
+
+<header>
+  <div class="marca">RISC</div>
+  <h1>Amigo Secreto</h1>
+  <div class="ano">2026</div>
+</header>
+
+<main class="cartao">
+  <section id="t1">
+    <p>Digite a chave que você recebeu para descobrir quem você tirou.</p>
+    <form id="f" autocomplete="off">
+      <label for="k">Sua chave</label>
+      <input id="k" maxlength="11" placeholder="XXXX-XXXX" spellcheck="false" autocapitalize="characters">
+      <button id="b" type="submit">Descobrir</button>
+      <div class="erro" id="e"></div>
+    </form>
+  </section>
+
+  <section id="t2" class="oculto">
+    <div class="ola">Olá, <span id="q"></span>!</div>
+    <p>Confira se ninguém está olhando e toque no presente.</p>
+    <div class="presente" id="g" role="button" aria-label="Revelar">🎁</div>
+    <div class="rotulo">Seu amigo secreto é</div>
+    <div class="nome" id="r">?</div>
+    <div class="dica" id="d">Guarde segredo até o dia da troca 🤫</div>
+    <button class="link" id="v" type="button">Sair</button>
+  </section>
+</main>
+
+<footer>Cada chave abre um único resultado. Não compartilhe a sua.</footer>
+
+<script>(new Function(decodeURIComponent(escape(atob("KGZ1bmN0aW9uKCl7CnZhciBEPXsiMzg5ODU2NzlkMTVhMzQyOCI6WyIvODB0NkIzdFRYaEVLTHpBV3BtZlFnPT0iLCJrT1U2RTZmU3BVeDRHQm5lIiwiTFVtWlhYOEp5bUlmKzVqYmZaZG9ib29Dbis1OCtadWxVNG1YQjFLZGx5VCtGUHRrekFnPSJdLCI0NzNjYzgxZTczNWMyZDJjIjpbImVvZmtYM0ZLcnJ2T2VSaVZ5cndlU0E9PSIsIjEvL2xreFRHbURzakdWU08iLCI5czhQeW5EVCtXanhQNjlkVUZoS24yR0NxNkZ4YzNKMHM4SWgvM0NaUm1xT3hrcno0bjFTb3c9PSJdLCI4MmI0MDBhMjM3MWMxMDJmIjpbIlVZS2I5b2hvMDllZlNzWlpmN1ErQ0E9PSIsIkI3Z0xPb0pNK25KM3hPRUUiLCJtbHRiSVNrV3ZDSUJIbHBVRk96U2NGS1VxV1JtaGdUUVhLbjByU1JGWmw5ZXJiWXRwdVU9Il0sImJhODIwNDY0YWM0N2EyNzYiOlsiVjB1RG41T2FVTTlGYW1QdUR1cDZNUT09IiwieDhzeUdxb2ZjdUxJYnZCcCIsImJiSkRZcDVCSHlhZjNiTUhsbEZhVnIwdDhHVU92Zkg2ZXRjckhhdUpPQ041bnYxaU1PZz0iXSwiYzU1NjI5NGRlYjRkODQ3ZCI6WyJZM1czejRBQ0pGTzFsMnI2a1NpNzRBPT0iLCJIaC9McXA0Y3ZCamloT0NmIiwiUm9jVDlGelNjNlAzMkMzQlhwN3p0STA2ODF0d2pCM3FiS1R1aDNCMjZrUXQ2U0xRb2dPNGcrY0JvdzlQUW9PSTd6cz0iXSwiY2Q4MzRiYjU5NTU2NDMyMiI6WyJIQ2s1TDF6QjFHYzhPZ2J2RzNKU3lBPT0iLCJncHRvdnI0cHdxdWtBYUtpIiwiL0h5ZzJFaUdIWkQ1UHMyQloxTmxoVFBXdEs3czVrQzV2NHNRbHUrenNtN2FtUWVERlE9PSJdLCJmNTI3Zjc2ZjM1MGQzMjAyIjpbIk5YeFVtNmFnbFppVjJSQnA1REV2S0E9PSIsIit2NDRaM2t0RnRsY0F5R2kiLCJxYkQ1Y2xnODJ0TEJYYzNNN3F4RzJMVzYwZ1J5VWt6U0pNSU0rZ3Q4MkM1djlkWHA3VGk0LytBPSJdLCJmYzNmYThkNTIyNTc3YTM3IjpbIkhaSlVDNThROHhGaU93UWZWQ1UrZ0E9PSIsImVubm9GZjhXczJoRnlraEkiLCJjVllldWpDczBlZnlpdDY3UmxUUXhSUUsrenFTZEw3VnI3NWtHcWNNdVVValllVTZvTC9PIl19LFM9InJpc2MtYW1pZ28tMjAyNjoiLEk9MTUwMDAwOwpmdW5jdGlvbiAkKGkpe3JldHVybiBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChpKX0KZnVuY3Rpb24gTihzKXtyZXR1cm4gcy50b1VwcGVyQ2FzZSgpLnJlcGxhY2UoL1teQS1aMC05XS9nLCcnKX0KZnVuY3Rpb24gSChiKXtyZXR1cm4gQXJyYXkuZnJvbShuZXcgVWludDhBcnJheShiKSkubWFwKGZ1bmN0aW9uKHgpe3JldHVybiB4LnRvU3RyaW5nKDE2KS5wYWRTdGFydCgyLCcwJyl9KS5qb2luKCcnKX0KZnVuY3Rpb24gQihzKXtyZXR1cm4gVWludDhBcnJheS5mcm9tKGF0b2IocyksZnVuY3Rpb24oYyl7cmV0dXJuIGMuY2hhckNvZGVBdCgwKX0pfQphc3luYyBmdW5jdGlvbiBBKGspe3ZhciB0PW5ldyBUZXh0RW5jb2RlcigpLGM9Y3J5cHRvLnN1YnRsZTsKdmFyIGlkPUgoYXdhaXQgYy5kaWdlc3QoJ1NIQS0yNTYnLHQuZW5jb2RlKFMraykpKS5zbGljZSgwLDE2KSx4PURbaWRdO2lmKCF4KXJldHVybiBudWxsOwp2YXIgYj1hd2FpdCBjLmltcG9ydEtleSgncmF3Jyx0LmVuY29kZShrKSwnUEJLREYyJyxmYWxzZSxbJ2Rlcml2ZUtleSddKTsKdmFyIHk9YXdhaXQgYy5kZXJpdmVLZXkoe25hbWU6J1BCS0RGMicsc2FsdDpCKHhbMF0pLGl0ZXJhdGlvbnM6SSxoYXNoOidTSEEtMjU2J30sYix7bmFtZTonQUVTLUdDTScsbGVuZ3RoOjI1Nn0sZmFsc2UsWydkZWNyeXB0J10pOwp2YXIgcD1hd2FpdCBjLmRlY3J5cHQoe25hbWU6J0FFUy1HQ00nLGl2OkIoeFsxXSl9LHksQih4WzJdKSk7cmV0dXJuIEpTT04ucGFyc2UobmV3IFRleHREZWNvZGVyKCkuZGVjb2RlKHApKX0KdmFyIGs9JCgnaycpLGY9JCgnZicpLGU9JCgnZScpLGJ0PSQoJ2InKSxnPSQoJ2cnKSxyPSQoJ3InKTsKay5hZGRFdmVudExpc3RlbmVyKCdpbnB1dCcsZnVuY3Rpb24oKXt2YXIgdj1OKGsudmFsdWUpLnNsaWNlKDAsOCk7ay52YWx1ZT12Lmxlbmd0aD40P3Yuc2xpY2UoMCw0KSsnLScrdi5zbGljZSg0KTp2O2UudGV4dENvbnRlbnQ9Jyd9KTsKZi5hZGRFdmVudExpc3RlbmVyKCdzdWJtaXQnLGFzeW5jIGZ1bmN0aW9uKGV2KXtldi5wcmV2ZW50RGVmYXVsdCgpO3ZhciB2PU4oay52YWx1ZSk7CmlmKHYubGVuZ3RoIT09OCl7ZS50ZXh0Q29udGVudD0nQSBjaGF2ZSB0ZW0gOCBjYXJhY3RlcmVzLic7cmV0dXJufQppZighKHdpbmRvdy5jcnlwdG8mJmNyeXB0by5zdWJ0bGUpKXtlLnRleHRDb250ZW50PSdBYnJhIG8gc2l0ZSBwZWxvIGVuZGVyZcOnbyBodHRwcy4nO3JldHVybn0KYnQuZGlzYWJsZWQ9dHJ1ZTtidC50ZXh0Q29udGVudD0nQWJyaW5kby4uLic7dmFyIG89bnVsbDt0cnl7bz1hd2FpdCBBKHYpfWNhdGNoKF8pe30KYnQuZGlzYWJsZWQ9ZmFsc2U7YnQudGV4dENvbnRlbnQ9J0Rlc2NvYnJpcic7CmlmKCFvKXtlLnRleHRDb250ZW50PSdDaGF2ZSBuXHUwMGUzbyBlbmNvbnRyYWRhLiBDb25maXJhIGUgdGVudGUgZGUgbm92by4nO3JldHVybn0KJCgncScpLnRleHRDb250ZW50PW8ubjtyLnRleHRDb250ZW50PW8uYTtyLmNsYXNzTGlzdC5yZW1vdmUoJ3ZlcicpO2cuc3R5bGUuZGlzcGxheT0nJzsKJCgndDEnKS5jbGFzc0xpc3QuYWRkKCdvY3VsdG8nKTskKCd0MicpLmNsYXNzTGlzdC5yZW1vdmUoJ29jdWx0bycpfSk7CmcuYWRkRXZlbnRMaXN0ZW5lcignY2xpY2snLGZ1bmN0aW9uKCl7ci5jbGFzc0xpc3QuYWRkKCd2ZXInKTtnLnN0eWxlLmRpc3BsYXk9J25vbmUnfSk7CiQoJ3YnKS5hZGRFdmVudExpc3RlbmVyKCdjbGljaycsZnVuY3Rpb24oKXtrLnZhbHVlPScnO3IudGV4dENvbnRlbnQ9Jz8nO3IuY2xhc3NMaXN0LnJlbW92ZSgndmVyJyk7CiQoJ3QyJykuY2xhc3NMaXN0LmFkZCgnb2N1bHRvJyk7JCgndDEnKS5jbGFzc0xpc3QucmVtb3ZlKCdvY3VsdG8nKTtrLmZvY3VzKCl9KTsKdmFyIG49JCgnbmV2ZScpO2Zvcih2YXIgaT0wO2k8MzQ7aSsrKXt2YXIgcz1kb2N1bWVudC5jcmVhdGVFbGVtZW50KCdpJyksej0yK01hdGgucmFuZG9tKCkqNTsKcy5zdHlsZS5sZWZ0PU1hdGgucmFuZG9tKCkqMTAwKyd2dyc7cy5zdHlsZS53aWR0aD1zLnN0eWxlLmhlaWdodD16KydweCc7cy5zdHlsZS5vcGFjaXR5PS4yNStNYXRoLnJhbmRvbSgpKi42OwpzLnN0eWxlLmFuaW1hdGlvbkR1cmF0aW9uPSg3K01hdGgucmFuZG9tKCkqMTApKydzJztzLnN0eWxlLmFuaW1hdGlvbkRlbGF5PSgtTWF0aC5yYW5kb20oKSoxNSkrJ3MnO24uYXBwZW5kQ2hpbGQocyl9CmRvY3VtZW50LmFkZEV2ZW50TGlzdGVuZXIoJ2NvbnRleHRtZW51JyxmdW5jdGlvbih4KXt4LnByZXZlbnREZWZhdWx0KCl9KTsKZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcigna2V5ZG93bicsZnVuY3Rpb24oeCl7dmFyIGM9eC5rZXkmJngua2V5LnRvTG93ZXJDYXNlKCk7CmlmKHgua2V5PT09J0YxMid8fCgoeC5jdHJsS2V5fHx4Lm1ldGFLZXkpJiYoYz09PSd1J3x8Yz09PSdzJykpfHwoKHguY3RybEtleXx8eC5tZXRhS2V5KSYmeC5zaGlmdEtleSYmKGM9PT0naSd8fGM9PT0naid8fGM9PT0nYycpKSl4LnByZXZlbnREZWZhdWx0KCl9KTsKfSkoKTs=")))))();</script>
+</body>
+</html>
